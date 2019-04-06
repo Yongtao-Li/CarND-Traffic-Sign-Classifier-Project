@@ -143,6 +143,8 @@ Initially I was using LeNet 3 layers and default hyperparameters from previous L
 
 ![alt text][image4] 
 
+I also attached the spreadsheet that generates the plots above [here](https://github.com/Yongtao-Li/CarND-Traffic-Sign-Classifier-Project/blob/master/model_training_notes.xlsx).
+
 ### Test a Model on New Images
 
 #### 1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
@@ -152,7 +154,13 @@ Here are six German traffic signs that I found on the web:
 ![alt text][image5] ![alt text][image6] ![alt text][image7] 
 ![alt text][image8] ![alt text][image9] ![alt text][image10]
 
-These images are not the exact 32x32 size needed for inputs. So I used opencv function to resize them to be exact 32x32.
+You could tell that all these images are difference sizes and our model needs input for a specific size for inputs.
+
+```python
+x = tf.placeholder(tf.float32, (None, 32, 32, 3))
+```
+
+So I used opencv function to resize them to be exact 32x32, therefore I could leverage my final model directly to get predictions.
 
 ```python
 res = cv2.resize(img, dsize=(32, 32), interpolation=cv2.INTER_CUBIC)
